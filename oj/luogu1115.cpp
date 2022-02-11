@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int dp[200001];
+int dp;
 int n;
 
 int main(){
@@ -9,9 +9,9 @@ int main(){
     for(int i=1; i<=n; i++){
         int a;
         cin >> a;
-        dp[i] = max(dp[i-1], 0)+a;
-        if (i==1) maxx=dp[i];
-        maxx = max(dp[i], maxx);
+        dp = max(dp, 0)+a;
+        if (i==1) maxx=dp;
+        else maxx = max(dp, maxx);
     }
     cout << maxx;
 }
