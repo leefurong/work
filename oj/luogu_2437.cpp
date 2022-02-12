@@ -1,14 +1,12 @@
 #include<iostream>
 using namespace std;
-int ans[1001][1001];
 int a, b;
 
+int f(int a, int b){
+    if (b==a||b==a+1) return 1;
+    return f(a, b-1)+f(a, b-2);
+}
 int main(){
     cin >> a >> b;
-    ans[a][a] = 1;
-    ans[a][a+1] = 1;
-    for(int i=a+2; i<=b; i++){
-        ans[a][i] = ans[a][i-1]+ans[a][i-2];
-    }
-    cout << ans[a][b];
+    cout << f(a, b);
 }
