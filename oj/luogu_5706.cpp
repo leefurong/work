@@ -82,8 +82,8 @@ int main(){
         switch (cmd){
             // case 1: cout << _rank(tree, x)<<endl; break;
             // case 2: cout << nth(tree, x) << endl; break;
-            // case 3: cout << prev(tree, x)<<endl;break;
-            // case 4: cout << next(tree, x)<<endl; break;
+            case 3: cout << prev(tree, x)<<endl;break;
+            case 4: cout << next(tree, x)<<endl; break;
             case 5: tree=insert(tree, x);break;
         }
     }
