@@ -35,10 +35,7 @@ int _rank(node * tree, int x){
     if (tree->k<x){
         return size(tree->left)+1 + _rank(tree->right, x);
     }
-    if (tree->k>x){
-        return _rank(tree->left, x);
-    }
-    return -1; // should not go here. just to supress warning.
+    return _rank(tree->left, x);
 }
 
 int nth(node * tree, int n){
@@ -83,10 +80,10 @@ int main(){
         int cmd, x;
         cin >> cmd>>x;
         switch (cmd){
-            case 1: cout << _rank(tree, x)<<endl; break;
-            case 2: cout << nth(tree, x) << endl; break;
-            case 3: cout << prev(tree, x)<<endl;break;
-            case 4: cout << next(tree, x)<<endl; break;
+            // case 1: cout << _rank(tree, x)<<endl; break;
+            // case 2: cout << nth(tree, x) << endl; break;
+            // case 3: cout << prev(tree, x)<<endl;break;
+            // case 4: cout << next(tree, x)<<endl; break;
             case 5: tree=insert(tree, x);break;
         }
     }
