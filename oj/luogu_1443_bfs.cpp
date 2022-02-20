@@ -25,9 +25,11 @@ void print(){
     }
 }
 void bfs(int x1, int y1){
+    memset(steps, -1, sizeof(steps));
     queue<coord> q;
     q.push(coord(x1, y1));
     vis[x1][y1]=1;
+    steps[x1][y1] = 0;
 
     while(!q.empty()){
         coord pos = q.front();q.pop();
