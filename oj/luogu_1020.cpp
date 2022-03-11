@@ -1,5 +1,6 @@
 #include<iostream>
 #include<set>
+#include<algorithm>
 using namespace std;
 const int top = 50000;
 int a[100001];
@@ -28,9 +29,9 @@ int main(){
     // quiz 1: 最长不下降子序列长度
     for(int i=1; i<n; i++){
         if (a[i]<d[len-1]){
-            printd();
-            *lower_bound(d, d+len, a[i]) = a[i];
-            printd();
+            // printd();
+            *upper_bound(d, d+len, a[i]) = a[i];
+            // printd();
         }else if (a[i]>=d[len-1]){
             d[len++] = a[i];
         }
