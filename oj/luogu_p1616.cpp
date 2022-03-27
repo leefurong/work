@@ -10,7 +10,6 @@ int main(){
         cin >> ti >> vi;
         for(int j=ti; j<=t; j++){
                 dp[j] = max(dp[j], vi+dp[j-ti]);
-
         }
     }
     cout << dp[t]<<endl;
