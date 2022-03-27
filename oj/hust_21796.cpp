@@ -14,11 +14,13 @@ int main(){
                 dp[i]=max(dp[i], dp[i-v]+w);
             }
         }else{
-            //暴力拆分， 相当于s个商品，分别为 价格v， 价值w， 变为01背包问题
-            while(s--){//填写s行
-                for(int i=m; i>=v; i--){
-                    dp[i]=max(dp[i], dp[i-v]+w);
+            // 二进制拆分。把s个商品，拆分成1,2,4,...remain个包。变成01背包问题
+            for(int k=1; s>0; k<<=1){
+                int x=min(k, s);
+                for(int i=m; i>=x*v; i--){
+                    dp[i] = max(dp[i], dp[i-x*v]+x*w);
                 }
+                s-=x;
             }
         }
     }
