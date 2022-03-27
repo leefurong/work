@@ -9,9 +9,10 @@ int main(){
         int ti, vi;
         cin >> ti >> vi;
         for(int j=1; j<=t; j++){
-            long long use = j>=ti? vi + dp[j-ti]: dp[j];
-            long long ignore = dp[j];
-            dp[j] = max(use, ignore);
+            if (j>=ti){
+                dp[j] = max(dp[j], vi+dp[j-ti]);
+            }
+
         }
     }
     cout << dp[t]<<endl;
