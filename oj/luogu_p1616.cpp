@@ -8,10 +8,8 @@ int main(){
     while(m--){
         int ti, vi;
         cin >> ti >> vi;
-        for(int j=1; j<=t; j++){
-            if (j>=ti){
+        for(int j=ti; j<=t; j++){
                 dp[j] = max(dp[j], vi+dp[j-ti]);
-            }
 
         }
     }
