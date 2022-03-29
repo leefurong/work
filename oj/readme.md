@@ -30,3 +30,4 @@
 
 # 比赛
 [2020常州小能手比赛](cz_2020/)
+[NOI Online 2022 普及组字符串](noi_online_2022_string.cpp)
