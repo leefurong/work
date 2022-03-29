@@ -10,39 +10,61 @@ int count(string s, char c){
     for(char sc: s) if (c==sc)ans++;
     return ans;
 }
-string convert(string s, int rule){
-    string ans="";
-    int j=0;
-    for(int i=0; i<s.size(); i++){
-        char c = s[i];
-        if (c=='-'){
-            bool remove_tail = rule&(1<<j);
-            j++;
-            int new_len = ans.size()-1;
-            ans = ans.substr(remove_tail?0:1, new_len);
-        }else{
-            ans+=c;
+char end(string s){
+    return s[s.size()-1];
+}
+string dropTail(string s){
+    return s.substr(0, s.size()-1);
+}
+string dropTail(string s, int n){
+    return s.substr(0, s.size()-n);
+}
+int m(int n){
+    return n%1000000071;
+}
+int dfs(string s, string t, int pending_drop_head){
+    // 既然长度确定是对的， 我们就只需要从尾巴向前检查。
+
+
+    // 基线条件
+    // t比完了。 如果s还有纯字符的话， 那也是之前该去的头。 所以，这是可行方案。
+    // 具体算不算呢？ 看看s的“真实长度”是否为0吧。 所谓s的“真实长度”， 是指根据'-'删去字符后的长度, 再删去还欠的长度（pending_drop_head）
+    // 只要长度为0， 具体s里是怎样个顺序， 已经无关紧要了。 因为我们其实是从后面倒着推过来的。
+    // 如果长度匹配， 再看s里有几个-， 每一个-， 都代表两种可能。
+    if (t==""){
+        bool len_match = s.size()-pending_drop_head-count(s, '-')*2==0;
+        return len_match?m(1<<count(s, '-')):0; 
+    }
+
+
+    // 递归条件
+    if (end(s)!='-'){
+        if (end(s)==end(t)){
+            return dfs(dropTail(s), dropTail(t), pending_drop_head);
+        } else {
+            return 0;
         }
-    }
-    return ans;
-}
-int solve(string s, string t){
-    int rule = 0;
-    int ans=0;
-    int max_rule = (1<<count(s, '-'))-1;
-    while(rule<=max_rule){
-        if (convert(s, rule)==t) ans=(ans+1)% 10000000071;
-        rule++;
-    }
-    return ans;
-}
+    } else {
+        int ans1 = dfs(dropTail(s, 2), t, pending_drop_head); // 把s的-和尾巴都去掉， 继续和t倒着比
 
+        // 把s的-去掉（见基线条件：将来反正不管头了，相当于去掉了头）, 继续和t倒着比
+        // TODO: 但是， 如果有连续的--， 就不灵了！怎么办？？？？！！！
+        int ans2 = dfs(dropTail(s, 1), t, pending_drop_head+1);
+        return m(ans1+ans2);
+    }
 
+}
 int main(){
     cin >> n;
+    // 有几个还要去掉的头？
+    int pending_drop_head = 0;
     while(n--){
         cin >> lens>>lent;
         cin >> s >> t;
-        cout <<solve(s, t)<<endl;
+        int ans;
+        // 长度不对， 返回0
+        if (s.size()-2*count(s, '-')!=t.size()) ans=0;
+        else ans = dfs(s, t, pending_drop_head);
+        cout << ans<<endl;
     }
 }
