@@ -22,7 +22,7 @@ string dropTail(string s, int n){
 int m(int n){
     return n%1000000071;
 }
-int dfs(string s, string t, int pending_drop_head){
+int dfs(string s, string t, int pending_drop_head, int pending_drop_tail){
     // 既然长度确定是对的， 我们就只需要从尾巴向前检查。
 
 
@@ -39,32 +39,33 @@ int dfs(string s, string t, int pending_drop_head){
 
     // 递归条件
     if (end(s)!='-'){
+        if (pending_drop_tail){
+            return dfs(dropTail(s), t, pending_drop_head, pending_drop_tail-1);
+        }
         if (end(s)==end(t)){
-            return dfs(dropTail(s), dropTail(t), pending_drop_head);
+            return dfs(dropTail(s), dropTail(t), pending_drop_head, pending_drop_tail);
         } else {
             return 0;
         }
     } else {
-        int ans1 = dfs(dropTail(s, 2), t, pending_drop_head); // 把s的-和尾巴都去掉， 继续和t倒着比
+        int ans1 = dfs(dropTail(s, 1), t, pending_drop_head, pending_drop_tail+1); // 把s的-和尾巴都去掉， 继续和t倒着比
 
         // 把s的-去掉（见基线条件：将来反正不管头了，相当于去掉了头）, 继续和t倒着比
         // TODO: 但是， 如果有连续的--， 就不灵了！怎么办？？？？！！！
-        int ans2 = dfs(dropTail(s, 1), t, pending_drop_head+1);
+        int ans2 = dfs(dropTail(s, 1), t, pending_drop_head+1, pending_drop_tail);
         return m(ans1+ans2);
     }
 
 }
 int main(){
     cin >> n;
-    // 有几个还要去掉的头？
-    int pending_drop_head = 0;
     while(n--){
         cin >> lens>>lent;
         cin >> s >> t;
         int ans;
         // 长度不对， 返回0
         if (s.size()-2*count(s, '-')!=t.size()) ans=0;
-        else ans = dfs(s, t, pending_drop_head);
+        else ans = dfs(s, t, 0, 0);
         cout << ans<<endl;
     }
 }
