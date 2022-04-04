@@ -16,6 +16,7 @@
 * [多重背包 hustoj21796](hust_21796.cpp)
 * [混合背包 hustoj21797](hust_21797.cpp)
 * [5倍经验日 luogu1802](luogu_1802.cpp)
+* [宝物筛选 多重背包 luogu1776](luogu_1776.cpp)
 
 # 循环、字符串、枚举
 * [中英文识别] (cn_en.cpp)
