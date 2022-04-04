@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int dp[10001];
+int dp[40001];
 int n, W;
 int main(){
     cin >>n >>W;
