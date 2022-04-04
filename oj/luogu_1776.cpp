@@ -10,11 +10,9 @@ int main(){
 
         for(int x=1; mi>0; x<<=1){
             x=min(x, mi);
-            for(int i=W; i>=wi; i--){
+            for(int i=W; i>=wi*x; i--){
                 dp[i]=max(dp[i], dp[i-wi*x]+vi*x);
-                cout <<dp[i]<< " ";
             }
-            cout <<endl;
             mi-=x;
         }
     }
