@@ -17,6 +17,9 @@
 * [混合背包 hustoj21797](hust_21797.cpp)
 * [5倍经验日 luogu1802](luogu_1802.cpp)
 
+## 区间dp
+* [洛谷P1880 石子合并NOI1995](luogu_p1880.cpp)
+
 # 循环、字符串、枚举
 * [中英文识别] (cn_en.cpp)
 
