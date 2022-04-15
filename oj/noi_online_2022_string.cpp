@@ -16,8 +16,8 @@ char end(string s){
 string dropTail(string s){
     return s.substr(0, s.size()-1);
 }
-string dropTail(string s, int n){
-    return s.substr(0, s.size()-n);
+string dropTail(string s){
+    return s.substr(0, s.size()-1);
 }
 int m(int n){
     return n%1000000071;
@@ -48,11 +48,10 @@ int dfs(string s, string t, int pending_drop_head, int pending_drop_tail){
             return 0;
         }
     } else {
-        int ans1 = dfs(dropTail(s, 1), t, pending_drop_head, pending_drop_tail+1); // 把s的-和尾巴都去掉， 继续和t倒着比
-
-        // 把s的-去掉（见基线条件：将来反正不管头了，相当于去掉了头）, 继续和t倒着比
-        // TODO: 但是， 如果有连续的--， 就不灵了！怎么办？？？？！！！
-        int ans2 = dfs(dropTail(s, 1), t, pending_drop_head+1, pending_drop_tail);
+        // 去掉尾巴， 多少种？
+        int ans1 = dfs(dropTail(s), t, pending_drop_head, pending_drop_tail+1); 
+        // 去掉头， 多少种？
+        int ans2 = dfs(dropTail(s), t, pending_drop_head+1, pending_drop_tail);
         return m(ans1+ans2);
     }
 
