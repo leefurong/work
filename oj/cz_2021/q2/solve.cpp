@@ -8,6 +8,11 @@ int main(){
     int djiao = c - b*2;
     int dtui = d - a*2 - b*4;
 
+    if (djiao==0 && dtui==0) {
+        cout << -1<<endl<<-1;
+        return 0;
+    }
+
     // 鸡的变异
     int new_jijiao = 0 + djiao;
     int new_jitui = 2 + dtui;
