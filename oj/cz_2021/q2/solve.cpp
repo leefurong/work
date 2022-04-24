@@ -20,7 +20,7 @@ int main(){
     // 羊的变异
     int new_yangjiao = 2+djiao;
     int new_yangtui = 4+dtui;
-    if (b>0&&new_yangjiao>=0&&new_yangtui>=0){
+    if (b>0){
         cout << new_yangjiao << " " << new_yangtui;
     } else {
         cout << -1;
