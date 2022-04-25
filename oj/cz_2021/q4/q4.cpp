@@ -10,22 +10,21 @@ int vi;
 // Otherwise, returns '\0'
 // If reach end of string, returns '*'
 char move(int di, int repeatVi){
-    if (i>=n){
+    // 移动之前，先看是否已经有答案了。
+    if (i>=n){ // 答案1： 越界了。
         return '*';
+    } else {
+        int vi2 = vi + di*repeatVi;
+        int i2 = i+di;
+        if (vi!=vi2 && k<vi2){ // 答案2： 答案在此次移动的终点内, 且本次有效移动v有变化。(如果没变化， 不算计数)
+            int distance = k-vi;
+            return s[i+distance%di];
+        }
+        // 移动
+        vi=vi2;
+        i=i2;
+        return 0;
     }
-    if (repeatVi>0 && vi==k){
-        return s[i];
-    }
-    int vi2 = vi + di*repeatVi;
-    int i2 = i+di;
-    if (k<vi2){
-        int distance = k-vi;
-        return s[i+distance%di];
-    }
-
-    vi=vi2;
-    i=i2;
-    return 0;
 }
 char solve(char c){
     vi=0; // 虚拟位置
