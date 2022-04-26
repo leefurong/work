@@ -1,4 +1,4 @@
-#include<iostream>
+#include<bits/stdc++.h>
 #include<algorithm>
 using namespace std;
 
@@ -60,9 +60,8 @@ int main(){
     long long Q, L, R;
     cin >> Q;
     int n = prepare();
-
     while(Q--){
-        cin >> L >> R;
-        cout << upper_bound(funl, funl+n, R)-lower_bound(funl, funl+n, L)<<endl;
+        scanf("%lld%lld", &L, &R);
+        printf("%ld\n", upper_bound(funl, funl+n, R)-lower_bound(funl, funl+n, L));
     }
 }
