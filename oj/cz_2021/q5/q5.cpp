@@ -40,7 +40,7 @@ int shrink(int end){
             funl[j++]=stoll(fun[i]);
         }
     }
-    return j+1;
+    return j;
 }
 int prepare(){
     for(int len=2; len<=14; len++){
